@@ -1,0 +1,75 @@
+.schedule {
+	background-color: white;
+	width: 100%;
+	color: white;
+	font-size: 70%;
+	font-family: Arial, Sans-Serif;
+		
+	border-collapse: collapse;
+	border: 1px solid white;
+	line-height: 100%;
+	
+	align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.schedule td, th, tr {
+
+	min-height: 10px;
+	width: 12.5%;
+	padding: 8px 2px;
+	margin: 4px 2px;
+	text-align: center;
+	border: 1px solid white;
+}
+
+.schedule tr{
+	background-color: #2e2e2e;
+}
+
+
+.schedule a:link, a:visited { color: #f4c482 }
+.schedule a:hover, a:active { color: #fff }
+
+
+#top, .schedule, .side th {
+	background-color: *#2e2e2e;
+}
+/********
+$def_show_types = array(
+	'Rotation',				// 0
+	'Specialty',			// 1	
+	'Jazz',					// 2
+	'Sports/Talk',			// 3
+	'Rotating Specialty',	// 4 
+	'Special-Programming',	// 5 [not used in schedule]
+	'Live Sessions',		// 6
+	'Free Form',			// 7 [not used in schedule]
+	'Automation'			// 8 [not used in schedule]
+);
+class names based on show_typeID
+*********/
+
+.c1, .c4, .c6 {
+	/* specialty */
+	background-color: #58595f;
+}
+
+.c0 {
+	/* rotation */
+	background-color: #39436d;
+}
+.c3 {
+	/* sports/talk */
+	background-color: #1b5e3f;
+}
+.c2 {
+	/* jazz */
+	background-color: #A64B00;
+}
+
+.edit td:hover{
+	opacity: 0.4;	
+}

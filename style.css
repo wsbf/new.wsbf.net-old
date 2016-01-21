@@ -1,0 +1,84 @@
+body{
+/*	background-color: #efefec; */
+	background-color: #ffffff;
+	background-image: -webkit-gradient(radial, 50% 50%,200,50% 50%,20, to(rgb(255, 255, 255)), from(rgb(142, 149, 155)));
+	background-image: -webkit-radial-gradient(50% 50%, rgb(255, 255, 255), rgb(142, 149, 155));
+	background-image: -moz-radial-gradient(50% 50%, rgb(255, 255, 255), rgb(142, 149, 155));
+	background-image: -o-radial-gradient(50% 50%, rgb(255, 255, 255), rgb(142, 149, 155));
+	background-image: -ms-radial-gradient(50% 50%, rgb(255, 255, 255), rgb(142, 149, 155));
+	background-image: radial-gradient(50% 50%, rgb(255, 255, 255), rgb(142, 149, 155));
+	
+}
+#header{
+}
+
+#container{
+	width: 600px;
+	
+	padding: 40px 3%;
+	margin: 30px auto;
+	background-color: #fff;
+	min-height: 600px;
+	border: 1px solid #cecece;
+	border-radius: 10px;
+	font: 1em Georgia, Times, Serif;
+	
+
+}
+
+#container hr {
+	color: transparent;
+	background-color: transparent;
+	border: 1px dotted #606060;
+	border-style: none none dotted; }
+
+#container h1{
+	font: 2.5em "Baskerville", Georgia, Times, Serif;
+	font-weight: bold;
+	text-align: center;	
+	margin: 0.25em 0;
+	padding: 0;
+}
+
+#container h1 a:link, a:visited, a:active{
+	text-decoration: none;
+	color: #000000;
+}
+
+
+#container h1 a:hover{
+	font-style: italic;
+	text-decoration: none;
+	color: #000000;
+}
+#container h2{
+	font: 2em "Baskerville", Georgia, Times, Serif;	
+	font-style: italic;
+	text-align: center;
+	margin: 0.25em 0;
+	padding: 0;
+}
+
+#container h3{
+	font: 1.5em Georgia, Times, Serif;
+	text-align: center;
+}
+
+.error{
+	border: 1px solid #FF716A;
+	border-radius: 2px;
+	background-color: #FDD1D1;
+	font: 1em Georgia, Times, Serif;
+	padding: 0.3em;
+	margin: 0 0 0.5em 0;
+}
+
+.success{
+	border: 1px solid #00000
+	border-radius: 2px;
+	background-color: #AAFF99;
+	font: 1em Georgia, Times, Serif;
+	padding: 0.3em;
+	margin: 0 0 0.5em 0;
+}
+
