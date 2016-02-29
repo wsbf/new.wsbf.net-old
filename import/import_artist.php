@@ -5,15 +5,14 @@ require_once("../utils_ccl.php");
 require_once("../library_functions.php");
 require_once("../position_check.php");
 require_once("getid3/getid3.php");
-	
+require_once("import_config.php");
+
 if(!session_id()) session_start();
 if(!(MD_check())){
 	die ('You aren\'t allowed to be here!<br>Go <a href='.$_SERVER['HTTP_REFERER'].'>back.</a><br>');
 }
 
 $id3 = new getID3;	
-define('BASE_DIR', "/home/compe/RIPPED_MUSIC");
-define('SCRIPT_PREFIX', "http://stream.wsbf.net/wizbif/");
 //sanitizeInput();
 	
 echo "<title>WSBF Import Music</title>";

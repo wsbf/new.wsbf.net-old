@@ -1,12 +1,13 @@
 <?php
-
 $time = microtime(true);
 require_once("../conn.php");
-include("import_config.php");
 require_once("../utils_ccl.php");
 require_once("../library_functions.php");
-require_once("./getid3/getid3.php");
+require_once("getid3/getid3.php");
+require_once("import_config.php");
+
 sanitizeInput();
+
 function timeSelect($d, $c=0){
 	echo "<select name = '$d'>";
 	for($d = 0; $d <=23; $d++){

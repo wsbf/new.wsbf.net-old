@@ -17,7 +17,7 @@
 	<div id="container">
 		<center><h1>WSBF-FM Clemson</h1></center>
 		<ul>
-<?
+<?php
 
 	if(empty($_SESSION['username']) && $_POST){
 		$login = Login();

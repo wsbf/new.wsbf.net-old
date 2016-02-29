@@ -1,18 +1,17 @@
 <?php
 $time = microtime(true);
-//require_once("conn.php");
-include("import_config.php");
+require_once("../connect.php");
 require_once("../utils_ccl.php");
 require_once("../library_functions.php");
 require_once("../position_check.php");
 require_once("getid3/getid3.php");
+require_once("import_config.php");
 
 if(!session_id()) session_start();
 if(!(MD_check())){
 	die ('You aren\'t allowed to be here!<br>');
 }
 	   
-
 sanitizeInput();
 
 echo "<title>WSBF Import Music</title>";
