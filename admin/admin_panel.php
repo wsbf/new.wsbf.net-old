@@ -1,10 +1,6 @@
 <?php
-if(!session_id())
-	session_start();
-
 require_once('../header.php');
-require_once('../conn.php');
-include ('../position_check.php');
+require_once('../position_check.php');
 
 if(empty($_SESSION['username'])){  //gotta be logged in
 	die ('You need to login first!<br><a href="/login">Click here to login!</a>');
@@ -51,7 +47,7 @@ if(!(positionCheck("seniorstaff"))){
 <p>
 <?php
 	//Query to get show subs
-	$query = "SELECT `username`, `first_name`, `last_name`, `preferred_name`, `email_addr`, `cuid`, `def_teams`.`team`, `def_status`.`status` ". 
+	$query = "SELECT `username`, `first_name`, `last_name`, `preferred_name`, `email_addr`, `def_teams`.`team`, `def_status`.`status` ". 
 			"FROM `users`, `def_teams`, `def_status` ".
 			"WHERE `users`.`teamID` = `def_teams`.`teamID` AND `users`.`statusID` = `def_status`.`statusID` $stat".
 			"ORDER BY `$sort` $asc";
@@ -66,13 +62,12 @@ if(!(positionCheck("seniorstaff"))){
 	//Formatting table
 	echo "<style type=\"text/css\"> table.bottomBorder td, table.bottomBorder th { border-bottom:1px white; } </style>";
 	echo "<table class = \"bottomBorder\">";
-	echo "<tr><th style=\"text-align:center\">Username<a href='?sort=username&dir=ASC&status=$stat_no'>^</a><a href='?sort=username&dir=DESC&status=$stat_no'>v</a></th><th style=\"text-align:center\">First Name<a href='?sort=first_name&dir=ASC&status=$stat_no'>^</a><a href='?sort=first_name&dir=DESC&status=$stat_no'>v</a>
-		</th><th style=\"text-align:center\">Last Name<a href='?sort=last_name&dir=ASC&status=$stat_no'>^</a><a href='?sort=last_name&dir=DESC&status=$stat_no'>v</a>
-		</th><th style=\"text-align:center\">Preferred Name<a href='?sort=preferred_name&dir=ASC&status=$stat_no'>^</a><a href='?sort=preferred_name&dir=DESC&status=$stat_no'>v</a>
-		</th><th style=\"text-align:center\">Email Address<a href='?sort=email_addr&dir=ASC&status=$stat_no'>^</a><a href='?sort=email_addr&dir=DESC&status=$stat_no'>v</a>
-		</th><th style=\"text-align:center\">CUID<a href='?sort=cuid&dir=ASC&status=$stat_no'>^</a><a href='?sort=cuid&dir=DESC&status=$stat_no'>v</a>
-		</th><th style=\"text-align:center\">Team<a href='?sort=team&dir=ASC&status=$stat_no'>^</a><a href='?sort=team&dir=DESC&status=$stat_no'>v</a>
-		</th><th style=\"text-align:center\">Status<a href='?sort=status&dir=ASC&status=$stat_no'>^</a><a href='?sort=status&dir=DESC&status=$stat_no'>v</a>
+	echo "<tr><th>Username<a href='?sort=username&dir=ASC&status=$stat_no'>^</a><a href='?sort=username&dir=DESC&status=$stat_no'>v</a></th><th>First Name<a href='?sort=first_name&dir=ASC&status=$stat_no'>^</a><a href='?sort=first_name&dir=DESC&status=$stat_no'>v</a>
+		</th><th>Last Name<a href='?sort=last_name&dir=ASC&status=$stat_no'>^</a><a href='?sort=last_name&dir=DESC&status=$stat_no'>v</a>
+		</th><th>Preferred Name<a href='?sort=preferred_name&dir=ASC&status=$stat_no'>^</a><a href='?sort=preferred_name&dir=DESC&status=$stat_no'>v</a>
+		</th><th>Email Address<a href='?sort=email_addr&dir=ASC&status=$stat_no'>^</a><a href='?sort=email_addr&dir=DESC&status=$stat_no'>v</a>
+		</th><th>Team<a href='?sort=team&dir=ASC&status=$stat_no'>^</a><a href='?sort=team&dir=DESC&status=$stat_no'>v</a>
+		</th><th>Status<a href='?sort=status&dir=ASC&status=$stat_no'>^</a><a href='?sort=status&dir=DESC&status=$stat_no'>v</a>
 		</th></tr>";
 	
 	//Get row from SQL Query, populate tables with albums
@@ -82,9 +77,8 @@ if(!(positionCheck("seniorstaff"))){
 		$last = $row[2];
 		$pref = $row[3];
 		$email = $row[4];
-		$cuid = $row[5];
-		$team = $row[6];
-		$status = $row[7];
+		$team = $row[5];
+		$status = $row[6];
 		
 		if($team == "None"){
 			$bg = "white";
@@ -95,9 +89,9 @@ if(!(positionCheck("seniorstaff"))){
 			$text = "white";
 		}
 			
-		echo "<tr style=\"text-align:center; background-color:$bg; color:$text;\">";
+		echo "<tr style=\"background-color:$bg; color:$text;\">";
 		
-		echo "<td>$username</td><td>$first</td><td>$last</td><td>$pref</td><td><a style='text-align:center; background-color:$bg; color:$text; text-decoration:none !important;' href='mailto:$email'>$email</a></td><td>$cuid</td><td>$team</td><td>$status</td>";
+		echo "<td>$username</td><td>$first</td><td>$last</td><td>$pref</td><td><a style='background-color:$bg; color:$text; text-decoration:none !important;' href='mailto:$email'>$email</a></td><td>$team</td><td>$status</td>";
 		
 		echo "</tr>";
 	}
