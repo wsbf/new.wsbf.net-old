@@ -23,18 +23,10 @@ if(isset($_GET['showID'])){
 	$query .= " GROUP BY s.showID ORDER BY s.showID DESC";
 }
 
-
-
 if(!isset($_GET['showID'])) {
-	// die("no showID");
-
 	// $query = $query . " ";
 
 	$rsc = mysql_query($query) or die(mysql_error());
-	$back = $_SERVER['HTTP_REFERER'];
-
-
-
 
 	echo "<p><a href='../submit_login.php'>Go back</a></p>";
 	echo "<h2 style='margin: 0 auto; width: 300px'>Download MP3 Show Archives</h2>";
@@ -61,9 +53,9 @@ else {
 	$rsc = mysql_query($query) or die(mysql_error());
 	$arr = mysql_fetch_array($rsc, MYSQL_ASSOC);
 	$playlist = "playlists?showid=".$_GET['showID'];
+
 	echo "<h2 style='margin: 20px auto; width: 30%; text-align: center'>Records for ".$arr['showID']."</h2>";
-	$back = $_SERVER['HTTP_REFERER'];
-	echo "<p><a href='$back'>Go back</a></p>";
+	echo "<p><a href='/wizbif/archives/index.php'>Go back</a></p>";
 
 	echo "<table style='margin: 0 auto; width: 90%'><tr><td>DJ</td><td>".$arr['dj_names']."</td></tr>".
 		"<tr><td>Show Name</td><td>".$arr['show_name']."</td></tr>".
@@ -83,14 +75,14 @@ else {
 		if($count > 0) $append = " ($count)";
 		$filename = $arr['showID'].$append.".mp3";
 		$relpath = BASE_PATH.$filename;
-		$oldpath = OLD_BASE_PATH.$filename;
+//		$oldpath = OLD_BASE_PATH.$filename;
 
 		if(file_exists($relpath)){
 			$downloadURL = WEB_PATH.$filename;
 			echo "<tr><td><audio controls><source src='" . $downloadURL . "' type='audio/mpeg'></audio></td><td><a href='" . $downloadURL . "'>$filename</a></td></tr>";
 		}
-		elseif(file_exists($oldpath))
-			echo "<tr><td><a href='".OLD_WEB_PATH.$arr['showID'].$append.".mp3'>".$arr['showID'].$append.".mp3</a></td></tr>";
+//		elseif(file_exists($oldpath))
+//			echo "<tr><td><a href='".OLD_WEB_PATH.$arr['showID'].$append.".mp3'>".$arr['showID'].$append.".mp3</a></td></tr>";
 		elseif($count > 0){
 			break;
 		}
@@ -100,8 +92,4 @@ else {
 	echo "</table>";
 
 }
-
-
-
-
 ?>

@@ -1,24 +1,22 @@
-<?
+<?php
 /** File name: submit_edit_profile.php 
  *  Author: Edward Sullivan (ELSULLI@g.clemson.edu, 240 383 0498)
  *  Date: 30 August, 2012
  *  Purpose: Take data that users submitted on the form (at edit_profile.php)
  *           and update the database. The data is about the user's personal 
- *           info (preferred name, email address, phone number, etc.) and about
+ *           info (preferred name, email address, etc.) and about
  *           each of the user's current shows (show name, alias, etc.).
  *
  */
 require_once('../conn.php');
 
-if(isset($_POST['sms_recv'])){ // Basic check to make sure that the posted info from edit_submit.php is present
+if(isset($_POST['username'])){ // Basic check to make sure that the posted info from edit_submit.php is present
 
    // Personal information about the user
    // from the form on the edit_profile.php page
    $username = $_POST['username'];
    $preferred_name = $_POST['preferred_name'];
    $email_addr = $_POST['email_addr'];
-   $phone_number = $_POST['phone_number'];
-   $sms_recv = $_POST['sms_recv'];
    $profile_paragraph = $_POST['profile_paragraph'];
    $statusID = $_POST['statusID']; // active, inactive, alumni, etc.
    $show_count = $_POST['show_count']; // Current # of shows
@@ -30,8 +28,6 @@ if(isset($_POST['sms_recv'])){ // Basic check to make sure that the posted info 
    for ($j = 0; $j <= $show_count; $j++){
       $post_name = sprintf("scheduleID%d", $j);
       $show_ID[$j] = $_POST[$post_name];
-	  
-	  
    }
 
    // Finding user's alias for each of user's current shows
@@ -68,9 +64,9 @@ if(isset($_POST['sms_recv'])){ // Basic check to make sure that the posted info 
    }
 */
    // Updating the MySQL database with the user's personal information
-   $update_query = sprintf("UPDATE users SET preferred_name='%s', email_addr='%s', phone_number='%s', sms_recv='%d', statusID='%d', profile_paragraph='%s' WHERE username='%s'",
+   $update_query = sprintf("UPDATE users SET preferred_name='%s', email_addr='%s', statusID='%d', profile_paragraph='%s' WHERE username='%s'",
                            mysql_real_escape_string($preferred_name),mysql_real_escape_string($email_addr),
-                           mysql_real_escape_string($phone_number),$sms_recv,$statusID,mysql_real_escape_string($profile_paragraph),mysql_real_escape_string($username));
+                           $statusID,mysql_real_escape_string($profile_paragraph),mysql_real_escape_string($username));
    mysql_query($update_query) or die("MySQL error [". __FILE__ ."] near line " . __LINE__ . ": " .mysql_error());
    
    $update_query = sprintf("UPDATE schedule SET genre='%s', description='%s', show_name='%s' WHERE scheduleID='%d'", mysql_real_escape_string($genre), mysql_real_escape_string($show_desc), mysql_real_escape_string($show_name), $sched_ID);

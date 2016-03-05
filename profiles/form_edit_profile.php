@@ -3,7 +3,7 @@
  *  Author: Edward Sullivan (ELSULLI@g.clemson.edu, 240 383 0498)
  *  Date: 30 August, 2012
  *  Purpose: Form to allow DJs to edit their personal information
- *           (email address, preferred name, phone number, status, etc.)
+ *           (email address, preferred name, status, etc.)
  *           as well as info for each of their active shows (show name, alias
  *           for the show hosts, show description, etc.). This form
  *           posts to submit_edit_profile.php.  
@@ -43,10 +43,9 @@
 
 
 
-   /* Defining mysql query to get current info about the user (name, preferred name, phone number, email address */
+   /* Defining mysql query to get current info about the user (name, preferred name, email address */
    $DJ_profile_query = sprintf("SELECT first_name, last_name, preferred_name,
-                           phone_number, email_addr,
-                           sms_recv, username, profile_paragraph
+                           email_addr, username, profile_paragraph
                            FROM users
                            WHERE username = '%s'", $username);
 
@@ -197,36 +196,6 @@ function print_user_table($user_info) {
        echo "<tr><td><div id=\"top\"><tt>Email address:</tt></div></td><td> <INPUT TYPE = \"Text\" " .
             "SIZE ='40' VALUE =\"$user_info[email_addr]\" NAME = 'email_addr' ></td></tr>\n";
 
-         /* Phone number row */
-       echo "<tr><td><div id=\"top\"><tt>Phone number:</tt></div></td><td> <INPUT TYPE = \"Text\" " .
-            "SIZE ='40' VALUE =\"$user_info[phone_number]\" NAME = 'phone_number' ></td></tr>\n";
-
-
-         /* Combo box to decide whether or not to recieve texts */ 
-       echo "<tr><td><div id=\"top\"><tt>Receive texts:</tt></div></td><td>";
-       echo "<select name=\"sms_recv\">";
-       $sms_yes = 1;
-       $sms_no = 0;
- 
-            /* Option to recieve cell phone texts from wsbf */
-          echo "\t<option";
-          if($user_info[sms_recv] == 1){
-             echo " selected=\"true\"";  
-          }
-          echo " value=\"$sms_yes\">Yes</option>\r";
-
-            /* Option to NOT recieve cell phone texts from wsbf */       
-          echo "\t<option";
-          if($user_info[sms_recv] == 0){
-             echo " selected=\"true\""; 
-          }
-          echo " value=\"$sms_no\">No</option>\r";
-
-       echo "</select>\n";
-       echo "</td></tr>\n";
-
-
-
 
           /* Combo box to allow user to set his/her current status (active DJ at WSBF, inactive but still at
              Clemson and participating in wsbf social events, alumni and no longer living in Clemson, etc.) 
@@ -287,13 +256,10 @@ function print_user_table($user_info) {
            </form>";
 
 
-
-
        if ($statusID == 0 or $statusID == 1 or $statusID == 2 or $statusID == 4){
           echo "<tr><td><tt>Profile picture:</tt></td><td><input type=\"file\" name=\"fileField\"></td></tr>";
           echo "<tr><td><tt>(Max size = 1 MB)</tt></td><td></td>";
        }
-
 
    echo "</table>\n";
 
@@ -301,16 +267,13 @@ function print_user_table($user_info) {
    if ($statusID == 0 or $statusID == 1 or $statusID == 2 or $statusID == 4){
       displayProfilePicture();
    }
-
-
-
 }
 ?>
 
 
 <html>
 <script type="text/javascript">   
-// Javascript to check the telephone number and email address for correct format
+// Javascript to check the email address for correct format
 function validateForm()
 {
     var x=document.forms["myForm"]["email_addr"].value;
@@ -318,14 +281,6 @@ function validateForm()
     var filter_email = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
     if (!filter_email.test(x)){
        alert("Not a valid e-mail address");
-       return false;
-    }
-
-
-    var y=document.forms["myForm"]["phone_number"].value;
-    var filter_phone =/^\d{10}$/ //regular expression defining a 10 digit number
-    if (!filter_phone.test(y)){
-       alert("Not a valid phone number. Please enter 10 digits with no formatting or spaces.");
        return false;
     }
 }
@@ -483,15 +438,4 @@ function displayProfilePicture(){
       echo "<br> No current profile picture<br>";
    }
 }
-
-
 ?>
-
-
-
-
-
-
-
-
-
