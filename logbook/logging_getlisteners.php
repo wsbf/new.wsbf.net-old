@@ -1,13 +1,21 @@
 <?php
-require_once('../conn.php');
 
-// simply get number of listeners and output it
+$output = shell_exec("netstat -n"
+	. " | grep '130.127.17.4:8000'"
+	. " | grep ESTABLISHED"
+	. " | grep -v '130.127.17.6'");
 
-$listeners = getNumConnections("http://130.127.17.4:8000/status.xsl");
-if($listeners)
-	echo $listeners;
-else
-	echo "-1";
+$lines = explode("\n", $output);
 
+array_pop($lines);
 
+$addresses = array_map(function($line) {
+	$row = explode(" ", preg_replace("/\s+/", " ", $line));
+
+	return explode(":", $row[4])[0];
+}, $lines);
+
+$count = count(array_unique($addresses));
+
+echo $count;
 ?>

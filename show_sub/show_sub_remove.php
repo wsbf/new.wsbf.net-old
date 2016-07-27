@@ -1,4 +1,4 @@
-<?
+<?php
 /** show_sub_remove.php - Kevin Haag - Jan 2012
  *  Deletes a show sub request into 
  *  the motherfucking sub_request table

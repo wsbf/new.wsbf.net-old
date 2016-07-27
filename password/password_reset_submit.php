@@ -4,7 +4,7 @@
 <meta name="author" content="Edward Sullivan" />
 </head>
 <body>
-<?
+<?php
 
    require_once("../hash_functions.php");
    require_once("../connect.php"); // Connecting to the database

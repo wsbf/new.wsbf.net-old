@@ -1,12 +1,11 @@
-<?
+<?php
 /** show_sub_submit.php - Kevin Haag - Jan 2012
  *  Inserts a show sub request into 
  *  the motherfucking sub_request table
  */
 require_once('../conn.php');
 
-if($_POST){
-
+if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 	$username = $_POST['username'];
 	$date = $_POST['date'];
 	$start_time = $_POST['start_time'];
@@ -23,8 +22,9 @@ if($_POST){
 	
 	$insert_query = sprintf("INSERT INTO `sub_request` (username, dayID, start_time, end_time, date, reason, show_name, show_typeID) VALUES ('%s', %d, '%s', '%s', '%s', '%s', '%s', %d)", mysql_real_escape_string($username), $dayID, $start, $end, $date, mysql_real_escape_string($reason), mysql_real_escape_string($showName), $show_type); 
 
-	//echo "$insert_query";
-	mysql_query($insert_query) or die("MySQL error [". __FILE__ ."] near line " . __LINE__ . ": " .mysql_error());
-	//header( 'Location: http://new.wsbf.net/wizbif/show_sub/show_sub.php' ) ;
+	mysql_query($insert_query) or die(mysql_error());
+
+	header("Location: /wizbif/show_sub/show_sub.php");
+	exit;
 }
 ?>
